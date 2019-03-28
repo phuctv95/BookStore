@@ -17,6 +17,16 @@ namespace Business
             return bookDA.GetList();
         }
 
+        public List<Book> GetList(int pageSize, int pageNumber)
+        {
+            return bookDA.GetList(pageSize, pageNumber);
+        }
+
+        public int GetNumOfPages(int pageSize)
+        {
+            return bookDA.GetNumOfPages(pageSize);
+        }
+
         public Book Find(int id)
         {
             return bookDA.Find(id);

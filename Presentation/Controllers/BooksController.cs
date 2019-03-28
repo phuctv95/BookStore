@@ -20,9 +20,13 @@ namespace Presentation.Controllers
         private BookBU bookBU = new BookBU();
 
         // GET: Books
-        public ActionResult Index()
+        public ActionResult Index(int? pageNumber)
         {
-            return View(bookBU.GetList());
+            pageNumber = (pageNumber ?? 1);
+            int pageSize = 4;
+            ViewBag.NumOfPages = bookBU.GetNumOfPages(pageSize);
+            ViewBag.PageNumber = pageNumber;
+            return View(bookBU.GetList(pageSize, pageNumber.Value));
         }
 
         // GET: Books/Details/5

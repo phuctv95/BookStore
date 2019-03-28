@@ -16,6 +16,6 @@ namespace Model.DomainModel
         [DataType(DataType.MultilineText)]
         public string History { get; set; }
 
-        public virtual ICollection<Author> Authors { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

@@ -22,6 +22,26 @@ namespace DataAccess
                 .ToList();
 
         }
+
+        public List<Book> GetList(int pageSize, int pageNumber)
+        {
+
+            return db.Books
+                .OrderBy(b => b.BookId)
+                .Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .Include(b => b.Author)
+                .Include(b => b.Category)
+                .Include(b => b.Publisher)
+                .ToList();
+        }
+
+        public int GetNumOfPages(int pageSize)
+        {
+            int numOfRows = db.Books.Count();
+            return numOfRows / pageSize + 1;
+        }
+
         public Book Find(int id)
         {
 

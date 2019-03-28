@@ -14,6 +14,6 @@ namespace Model.DomainModel
         public DateTime CreatedDate { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual ICollection<Book> Books { get; set; }
+        public virtual Book Book { get; set; }
     }
 }

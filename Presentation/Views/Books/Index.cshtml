@@ -12,14 +12,14 @@
 <table class="table">
     <tr>
         @*<th>
-            @Html.DisplayNameFor(model => model.Author.AuthorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.CateName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Publisher.Name)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Author.AuthorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CateName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Publisher.Name)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -33,61 +33,108 @@
             @Html.DisplayNameFor(model => model.ImgUrl)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.Summary)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </th>*@
+                @Html.DisplayNameFor(model => model.Summary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
         <th>Action</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Author.AuthorName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.CateName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Publisher.Name)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImgUrl)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Summary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedDate)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Author.AuthorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CateName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publisher.Name)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImgUrl)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Summary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedDate)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<ul class="pagination">
+    @if (ViewBag.PageNumber == 1)
+    {
+        <li class="disabled">
+            <span aria-hidden="true">&laquo;</span>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href="@Url.Action("Index", "Books", new { pageNumber = (ViewBag.PageNumber - 1) })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+    }
+    @for (int i = 1; i <= ViewBag.NumOfPages; i++)
+    {
+        if (i == ViewBag.PageNumber)
+        {
+            <li class="active">
+                @Html.ActionLink(i.ToString(), "Index", "Books", new { pageNumber = i }, new { })
+            </li>
+        }
+        else
+        {
+            <li>
+                @Html.ActionLink(i.ToString(), "Index", "Books", new { pageNumber = i }, new { })
+            </li>
+        }
+    }
+    @if (ViewBag.PageNumber == ViewBag.NumOfpages)
+    {
+        <li class="disabled">
+            <span aria-hidden="true">&raquo;</span>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href="@Url.Action("Index", "Books", new { pageNumber = (ViewBag.PageNumber + 1)})" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    }
+</ul>
