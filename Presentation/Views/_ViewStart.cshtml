@@ -1,0 +1,14 @@
+﻿@{
+    // Original.
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var urlSegments = Request.Url.AbsolutePath.Split('/');
+    if (urlSegments.Length > 1 && string.Equals(urlSegments[1], "admin", StringComparison.OrdinalIgnoreCase))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    }
+}

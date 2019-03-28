@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9EB3736A-5A04-4573-89FC-6FFF1AC974FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthorDA.cs" />
+    <Compile Include="BookDA.cs" />
+    <Compile Include="BookStoreContext.cs" />
+    <Compile Include="CategoryDA.cs" />
+    <Compile Include="Migrations\201903251002186_InitialCreate.cs" />
+    <Compile Include="Migrations\201903251002186_InitialCreate.Designer.cs">
+      <DependentUpon>201903251002186_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903261433063_AddMore.cs" />
+    <Compile Include="Migrations\201903261433063_AddMore.Designer.cs">
+      <DependentUpon>201903261433063_AddMore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271359126_AddMore1.cs" />
+    <Compile Include="Migrations\201903271359126_AddMore1.Designer.cs">
+      <DependentUpon>201903271359126_AddMore1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271422030_UpdateCategory.cs" />
+    <Compile Include="Migrations\201903271422030_UpdateCategory.Designer.cs">
+      <DependentUpon>201903271422030_UpdateCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271431546_UpdatePublisher.cs" />
+    <Compile Include="Migrations\201903271431546_UpdatePublisher.Designer.cs">
+      <DependentUpon>201903271431546_UpdatePublisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271518585_UpdateBook.cs" />
+    <Compile Include="Migrations\201903271518585_UpdateBook.Designer.cs">
+      <DependentUpon>201903271518585_UpdateBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublisherDA.cs" />
+    <Compile Include="UserDA.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{83025066-5bde-4654-aa83-20ae17c74d5f}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903251002186_InitialCreate.resx">
+      <DependentUpon>201903251002186_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903261433063_AddMore.resx">
+      <DependentUpon>201903261433063_AddMore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271359126_AddMore1.resx">
+      <DependentUpon>201903271359126_AddMore1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271422030_UpdateCategory.resx">
+      <DependentUpon>201903271422030_UpdateCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271431546_UpdatePublisher.resx">
+      <DependentUpon>201903271431546_UpdatePublisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271518585_UpdateBook.resx">
+      <DependentUpon>201903271518585_UpdateBook.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
