@@ -10,6 +10,14 @@ namespace DataAccess
 {
     public class CategoryDA
     {
+        public Category GetFirst()
+        {
+            using (var db = new BookStoreContext())
+            {
+                return db.Categories.FirstOrDefault();
+            }
+        }
+
         public List<Category> GetList()
         {
             using (var db = new BookStoreContext())

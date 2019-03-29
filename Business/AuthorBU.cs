@@ -12,6 +12,11 @@ namespace Business
     {
         private AuthorDA authorDA = new AuthorDA();
 
+        public Author GetFirst()
+        {
+            return authorDA.GetFirst();
+        }
+
         public List<Author> GetList()
         {
             return authorDA.GetList();

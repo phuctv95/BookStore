@@ -12,6 +12,11 @@ namespace Business
     {
         private CategoryDA categoryDA = new CategoryDA();
 
+        public Category GetFirst()
+        {
+            return categoryDA.GetFirst();
+        }
+
         public List<Category> GetList()
         {
             return categoryDA.GetList();

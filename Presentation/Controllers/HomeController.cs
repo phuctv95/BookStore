@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Model.Enum;
 
 namespace Presentation.Controllers
 {
@@ -11,16 +12,32 @@ namespace Presentation.Controllers
     {
         private CategoryBU categoryBU = new CategoryBU();
         private AuthorBU authorBU = new AuthorBU();
+        private BookBU bookBU = new BookBU();
 
-        public ActionResult Index()
+        public ActionResult Index(HomeShowType showType = HomeShowType.Category, int? id = null)
         {
-            var categoryNames = new List<string>();
-            var authorNames = new List<string>();
-            categoryBU.GetList().ForEach(c => categoryNames.Add(c.CateName));
-            authorBU.GetList().ForEach(c => authorNames.Add(c.AuthorName));
-            ViewBag.CategoryNames = categoryNames;
-            ViewBag.AuthorNames = authorNames;
-            return View();
+            // Load for navigation UI.
+            ViewBag.CategoryNames = categoryBU.GetList();
+            ViewBag.AuthorNames = authorBU.GetList();
+
+            // Load model for the view.
+            if (id == null)
+            {
+                switch (showType)
+                {
+                    case HomeShowType.Category:
+                        id = categoryBU.GetFirst().CateId;
+                        break;
+                    case HomeShowType.Author:
+                        id = authorBU.GetFirst().AuthorId;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            var books = bookBU.GetListBy(showType, id.Value);
+
+            return View(books);
         }
 
         public ActionResult About()

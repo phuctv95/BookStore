@@ -15,7 +15,6 @@ namespace DataAccess
 
         public List<Book> GetList()
         {
-
             return db.Books
                 .Include(b => b.Author)
                 .Include(b => b.Category)
@@ -85,6 +84,26 @@ namespace DataAccess
                 .Include(b => b.Author)
                 .Include(b => b.Category)
                 .Include(b => b.Publisher)
+                .ToList();
+        }
+
+        public List<Book> GetListByCategory(int id)
+        {
+            return db.Books
+                .Include(b => b.Author)
+                .Include(b => b.Category)
+                .Include(b => b.Publisher)
+                .Where(b => b.Category.CateId == id)
+                .ToList();
+        }
+
+        public List<Book> GetListByAuthor(int id)
+        {
+            return db.Books
+                .Include(b => b.Author)
+                .Include(b => b.Category)
+                .Include(b => b.Publisher)
+                .Where(b => b.Author.AuthorId == id)
                 .ToList();
         }
 

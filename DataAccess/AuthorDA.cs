@@ -10,6 +10,14 @@ namespace DataAccess
 {
     public class AuthorDA
     {
+        public Author GetFirst()
+        {
+            using (var db = new BookStoreContext())
+            {
+                return db.Authors.FirstOrDefault();
+            }
+        }
+
         public List<Author> GetList()
         {
             using (var db = new BookStoreContext())

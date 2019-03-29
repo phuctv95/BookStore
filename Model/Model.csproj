@@ -48,6 +48,7 @@
     <Compile Include="DomainModel\Comment.cs" />
     <Compile Include="DomainModel\Publisher.cs" />
     <Compile Include="DomainModel\User.cs" />
+    <Compile Include="Enum\HomeShowType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\LoginUser.cs" />
   </ItemGroup>

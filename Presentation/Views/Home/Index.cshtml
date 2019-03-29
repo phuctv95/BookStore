@@ -1,4 +1,6 @@
-﻿@model Model.DomainModel.Book
+﻿@model IEnumerable<Model.DomainModel.Book>
+@using Model.DomainModel;
+@using Model.Enum;
 
 @{
     ViewBag.Title = "Home Page";
@@ -8,21 +10,26 @@
     <div class="col-md-3">
         <h2 style="font-family:'Times New Roman', Times, serif; font-style:italic; color: #0182b5;">Categories</h2>
         <ul class="nav nav-pills nav-stacked">
-            @foreach (var item in ViewBag.CategoryNames)
+            @foreach (Category item in ViewBag.CategoryNames)
             {
-                <li><a href="#"><span style="margin-right: 3px">●</span> @item</a></li>
+                <li><a href="@Url.Action("Index", new { HomeShowType.Category, id = item.CateId })"><span style="margin-right: 3px">●</span> @item.CateName</a></li>
             }
         </ul>
         <h2 style="font-family:'Times New Roman', Times, serif; font-style:italic; color: #0182b5;">Authors</h2>
         <ul class="nav nav-pills nav-stacked">
-            @foreach (var item in ViewBag.AuthorNames)
+            @foreach (Author item in ViewBag.AuthorNames)
             {
-                <li><a href="#"><span style="margin-right: 3px">●</span> @item</a></li>
+                <li><a href="@Url.Action("Index", new { HomeShowType.Author, id = item.AuthorId })"><span style="margin-right: 3px">●</span> @item.AuthorName</a></li>
             }
         </ul>
     </div>
 
     <div class="col-md-9">
+        @foreach (var item in Model)
+        {
+            <p>@item.Title</p>
+        }
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

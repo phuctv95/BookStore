@@ -28,6 +28,19 @@ namespace Business
             return bookDA.GetList(sort, pageSize, pageNumber);
         }
 
+        public List<Book> GetListBy(HomeShowType showType, int id)
+        {
+            switch (showType)
+            {
+                case HomeShowType.Category:
+                    return bookDA.GetListByCategory(id);
+                case HomeShowType.Author:
+                    return bookDA.GetListByAuthor(id);
+                default:
+                    return null;
+            }
+        }
+
         public int GetNumOfPages(int pageSize)
         {
             return bookDA.GetNumOfPages(pageSize);
