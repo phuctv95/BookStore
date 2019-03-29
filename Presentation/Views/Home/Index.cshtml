@@ -12,14 +12,14 @@
         <ul class="nav nav-pills nav-stacked">
             @foreach (Category item in ViewBag.CategoryNames)
             {
-                <li><a href="@Url.Action("Index", new { HomeShowType.Category, id = item.CateId })"><span style="margin-right: 3px">●</span> @item.CateName</a></li>
+                <li><a href="@Url.Action("Index", new { showType = HomeShowType.Category, id = item.CateId })"><span style="margin-right: 3px">●</span> @item.CateName</a></li>
             }
         </ul>
         <h2 style="font-family:'Times New Roman', Times, serif; font-style:italic; color: #0182b5;">Authors</h2>
         <ul class="nav nav-pills nav-stacked">
             @foreach (Author item in ViewBag.AuthorNames)
             {
-                <li><a href="@Url.Action("Index", new { HomeShowType.Author, id = item.AuthorId })"><span style="margin-right: 3px">●</span> @item.AuthorName</a></li>
+                <li><a href="@Url.Action("Index", new { showType = HomeShowType.Author, id = item.AuthorId })"><span style="margin-right: 3px">●</span> @item.AuthorName</a></li>
             }
         </ul>
     </div>
