@@ -6,40 +6,54 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .navbar-mod {
+            font-family: serif;
+            font-size:x-large;
+        }
+            .navbar-mod a {
+                color: black;
+                margin: 0 15px;
+            }
+        .nav > li > a:focus, .nav > li > a:hover {
+            background-color: transparent;
+        }
+        .nav > li > a {
+            color: gray;
+        }
+    </style>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+<body style="padding: 0; background-color: gray">
+    <div style="margin: 0 30px; padding: 0 70px; background: linear-gradient(to right, #dddddd, white 5%, white 95%, #dddddd); box-shadow: 0 0 15px 15px grey;">
+        <div class="row" style="margin: 0; padding-top: 15px;">
+            <div class="col-md-3">
+
+                <img src="~/Images/BestSeller.png" alt="BestSeller" style="max-width: 100%; display:block;" />
+
+                <img src="~/Images/BookStore.png" alt="BookStore" width="20%" style="position:absolute; right: 15px; display:block;" />
+
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Authors", "Index", "Authors")</li>
-                    <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
-                    <li>@Html.ActionLink("Publishers", "Index", "Publishers")</li>
-                    <li>@Html.ActionLink("Books", "Index", "Books")</li>
-                    <li>@Html.ActionLink("Log out", "Logout", "Admin")</li>
-                </ul>
+            <div class="col-md-9">
+                <div style="position:absolute; right:0; color: gray;">
+                    Welcome, <a href="#">Guest</a>.
+                    <span><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (0) <span style="color:dodgerblue;">$0.00</span></span>
+                </div>
+                <div class="navbar-mod" style="position:absolute; right:0; margin-top: 30px;">
+                    <a href="@Url.Action("Index", "Home")">Home</a>
+                    <a href="#">Products</a>
+                    <a href="#">Promotions</a>
+                    <a href="#">Profile</a>
+                    <a href="@Url.Action("About", "Home")">About Us</a>
+                    <a href="@Url.Action("Contact", "Home")">Contacts</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        <p>[Layout Home]</p>
+
+
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+
+        
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
