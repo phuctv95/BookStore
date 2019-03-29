@@ -39,12 +39,12 @@
                     <span><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart (0) <span style="color:dodgerblue;">$0.00</span></span>
                 </div>
                 <div class="navbar-mod" style="position:absolute; right:0; margin-top: 30px;">
-                    <a href="@Url.Action("Index", "Home")">Home</a>
+                    <a href="@Url.RouteUrl("Home", new { controller = "Home", action = "Index" })">Home</a>
                     <a href="#">Products</a>
                     <a href="#">Promotions</a>
                     <a href="#">Profile</a>
-                    <a href="@Url.Action("About", "Home")">About Us</a>
-                    <a href="@Url.Action("Contact", "Home")">Contacts</a>
+                    <a href="@Url.RouteUrl("Home", new { controller = "Home", action = "About" })">About Us</a>
+                    <a href="@Url.RouteUrl("Home", new { controller = "Home", action = "Contact" })">Contacts</a>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
 
         @RenderBody()
 
-        
+
 
     </div>
 

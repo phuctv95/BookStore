@@ -25,10 +25,22 @@
     </div>
 
     <div class="col-md-9">
-        @foreach (var item in Model)
-        {
-            <p>@item.Title</p>
-        }
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-6 col-md-3" style="margin: 10px 0">
+                    <div class="thumbnail">
+                        <img data-src="holder.js/120x180" alt="...">
+                        <div class="caption">
+                            <h3>@item.Title</h3>
+                            <p>by @item.Author.AuthorName</p>
+                            <p>@item.Summary</p>
+                            <p><a href="#" class="btn btn-primary">Buy</a> $@item.Price</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
 
         <hr />
         <footer>
@@ -36,3 +48,5 @@
         </footer>
     </div>
 </div>
+
+@Scripts.Render("~/bundles/holder")

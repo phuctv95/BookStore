@@ -15,7 +15,7 @@ namespace Presentation
 
             routes.MapRoute(
                 name: "Home",
-                url: "",
+                url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Index" }
             );
 
@@ -25,7 +25,6 @@ namespace Presentation
                 defaults: new { controller = "Admin", action = "Index" }
             );
 
-            // The default route.
             routes.MapRoute(
                 name: "Default",
                 url: "admin/{controller}/{action}/{id}",
