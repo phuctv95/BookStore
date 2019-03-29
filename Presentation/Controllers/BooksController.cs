@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Business;
 using DataAccess;
 using Model.DomainModel;
+using Model.Enum;
 using Presentation.Helpers;
 
 namespace Presentation.Controllers
@@ -20,13 +21,23 @@ namespace Presentation.Controllers
         private BookBU bookBU = new BookBU();
 
         // GET: Books
-        public ActionResult Index(int? pageNumber)
+        public ActionResult Index(int? pageNumber, BookSortType sort = BookSortType.Title)
         {
+            // Sorting.
+            ViewBag.SortTitle = (sort == BookSortType.Title ? BookSortType.TitleDesc : BookSortType.Title);
+            ViewBag.SortPrice = (sort == BookSortType.Price ? BookSortType.PriceDesc : BookSortType.Price);
+            ViewBag.SortQuantity = (sort == BookSortType.Quantity ? BookSortType.QuantityDesc : BookSortType.Quantity);
+            ViewBag.SortImgUrl = (sort == BookSortType.ImgUrl ? BookSortType.ImgUrlDesc : BookSortType.ImgUrl);
+            ViewBag.SortIsActive = (sort == BookSortType.IsActive ? BookSortType.IsActiveDesc : BookSortType.IsActive);
+            ViewBag.CurrentSort = sort;
+
+            // Paging.
             pageNumber = (pageNumber ?? 1);
             int pageSize = 4;
             ViewBag.NumOfPages = bookBU.GetNumOfPages(pageSize);
             ViewBag.PageNumber = pageNumber;
-            return View(bookBU.GetList(pageSize, pageNumber.Value));
+
+            return View(bookBU.GetList(sort, pageSize, pageNumber.Value));
         }
 
         // GET: Books/Details/5

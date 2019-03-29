@@ -17,6 +17,7 @@ namespace DataAccess
                 return db.Authors.ToList();
             }
         }
+
         public Author Find(int id)
         {
             using (var db = new BookStoreContext())

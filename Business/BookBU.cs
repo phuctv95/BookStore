@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Model.DomainModel;
+using Model.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,11 @@ namespace Business
         public List<Book> GetList(int pageSize, int pageNumber)
         {
             return bookDA.GetList(pageSize, pageNumber);
+        }
+
+        public List<Book> GetList(BookSortType sort, int pageSize, int pageNumber)
+        {
+            return bookDA.GetList(sort, pageSize, pageNumber);
         }
 
         public int GetNumOfPages(int pageSize)

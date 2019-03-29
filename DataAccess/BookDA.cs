@@ -1,4 +1,5 @@
 ﻿using Model.DomainModel;
+using Model.Enum;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -25,9 +26,60 @@ namespace DataAccess
 
         public List<Book> GetList(int pageSize, int pageNumber)
         {
-
             return db.Books
                 .OrderBy(b => b.BookId)
+                .Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .Include(b => b.Author)
+                .Include(b => b.Category)
+                .Include(b => b.Publisher)
+                .ToList();
+        }
+
+        public List<Book> GetList(BookSortType sort, int pageSize, int pageNumber)
+        {
+            var books = from s in db.Books select s;
+            switch (sort)
+            {
+                case BookSortType.Title:
+                    books = books.OrderBy(b => b.Title);
+                    break;
+                case BookSortType.TitleDesc:
+                    books = books.OrderByDescending(b => b.Title);
+                    break;
+
+                case BookSortType.Price:
+                    books = books.OrderBy(b => b.Price);
+                    break;
+                case BookSortType.PriceDesc:
+                    books = books.OrderByDescending(b => b.Price);
+                    break;
+
+                case BookSortType.Quantity:
+                    books = books.OrderBy(b => b.Quantity);
+                    break;
+                case BookSortType.QuantityDesc:
+                    books = books.OrderByDescending(b => b.Quantity);
+                    break;
+
+                case BookSortType.ImgUrl:
+                    books = books.OrderBy(b => b.ImgUrl);
+                    break;
+                case BookSortType.ImgUrlDesc:
+                    books = books.OrderByDescending(b => b.ImgUrl);
+                    break;
+
+                case BookSortType.IsActive:
+                    books = books.OrderBy(b => b.IsActive);
+                    break;
+                case BookSortType.IsActiveDesc:
+                    books = books.OrderByDescending(b => b.IsActive);
+                    break;
+
+                default:
+                    break;
+            }
+            return books
                 .Skip(pageSize * (pageNumber - 1))
                 .Take(pageSize)
                 .Include(b => b.Author)

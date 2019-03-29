@@ -21,16 +21,17 @@
                 @Html.DisplayNameFor(model => model.Publisher.Name)
             </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @*@Html.DisplayNameFor(model => model.Title)*@
+            <a href="@Url.Action("Index", new { sort = ViewBag.SortTitle, pageNumber = ViewBag.PageNumber })">@Html.DisplayNameFor(model => model.Title)</a>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            <a href="@Url.Action("Index", new { sort = ViewBag.SortPrice, pageNumber = ViewBag.PageNumber })">@Html.DisplayNameFor(model => model.Price)</a>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Quantity)
+            <a href="@Url.Action("Index", new { sort = ViewBag.SortQuantity, pageNumber = ViewBag.PageNumber })">@Html.DisplayNameFor(model => model.Quantity)</a>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ImgUrl)
+            <a href="@Url.Action("Index", new { sort = ViewBag.SortImgUrl, pageNumber = ViewBag.PageNumber })">@Html.DisplayNameFor(model => model.ImgUrl)</a>
         </th>
         @*<th>
                 @Html.DisplayNameFor(model => model.Summary)
@@ -42,7 +43,7 @@
                 @Html.DisplayNameFor(model => model.ModifiedDate)
             </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.IsActive)
+            <a href="@Url.Action("Index", new { sort = ViewBag.SortIsActive, pageNumber = ViewBag.PageNumber })">@Html.DisplayNameFor(model => model.IsActive)</a>
         </th>
         <th>Action</th>
     </tr>
@@ -103,7 +104,7 @@
     else
     {
         <li>
-            <a href="@Url.Action("Index", "Books", new { pageNumber = (ViewBag.PageNumber - 1) })" aria-label="Previous">
+            <a href="@Url.Action("Index", "Books", new { pageNumber = (ViewBag.PageNumber - 1), sort = ViewBag.CurrentSort })" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
@@ -113,13 +114,13 @@
         if (i == ViewBag.PageNumber)
         {
             <li class="active">
-                @Html.ActionLink(i.ToString(), "Index", "Books", new { pageNumber = i }, new { })
+                @Html.ActionLink(i.ToString(), "Index", "Books", new { pageNumber = i, sort = ViewBag.CurrentSort }, null)
             </li>
         }
         else
         {
             <li>
-                @Html.ActionLink(i.ToString(), "Index", "Books", new { pageNumber = i }, new { })
+                @Html.ActionLink(i.ToString(), "Index", "Books", new { pageNumber = i, sort = ViewBag.CurrentSort }, null)
             </li>
         }
     }
@@ -132,7 +133,7 @@
     else
     {
         <li>
-            <a href="@Url.Action("Index", "Books", new { pageNumber = (ViewBag.PageNumber + 1)})" aria-label="Next">
+            <a href="@Url.Action("Index", "Books", new { pageNumber = (ViewBag.PageNumber + 1), sort = ViewBag.CurrentSort})" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>
