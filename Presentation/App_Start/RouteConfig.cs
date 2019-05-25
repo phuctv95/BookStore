@@ -14,21 +14,21 @@ namespace Presentation
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Home",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Home", action = "Index" }
-            );
-
-            routes.MapRoute(
                 name: "Admin",
                 url: "admin",
                 defaults: new { controller = "Admin", action = "Index" }
             );
 
             routes.MapRoute(
-                name: "Default",
+                name: "AdminDetail",
                 url: "admin/{controller}/{action}/{id}",
                 defaults: new { /*controller = "Admin",*/ action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Home",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
     }
